@@ -1,0 +1,7 @@
+# NetBeans build fajlovi
+**/build/
+**/dist/
+**/nbproject/private/
+
+# kompajlirane klase
+*.class
