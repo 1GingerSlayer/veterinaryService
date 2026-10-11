@@ -9,5 +9,7 @@ package transfer.util;
  * @author Nina
  */
 public interface Operation {
-    
+
+    public static final int LOGIN = 0;
+    public static final int LOGOUT = 1;
 }
