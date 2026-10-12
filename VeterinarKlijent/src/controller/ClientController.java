@@ -8,6 +8,7 @@ import domain.Veterinar;
 import domain.KategorijaKlijenta;
 import domain.Klijent;
 import domain.Usluga;
+import domain.Termin;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -89,6 +90,10 @@ public class ClientController {
 
     public ArrayList<Usluga> getAllUsluga(Usluga usluga) throws Exception {
         return (ArrayList<Usluga>) sendRequest(Operation.GET_ALL_USLUGA, usluga);
+    }
+
+    public void addTermin(Termin t) throws Exception {
+        sendRequest(Operation.ADD_TERMIN, t);
     }
 
     private synchronized Object sendRequest(int operation, Object data) throws Exception {

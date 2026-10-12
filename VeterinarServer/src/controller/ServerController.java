@@ -8,6 +8,7 @@ import domain.Veterinar;
 import domain.KategorijaKlijenta;
 import domain.Klijent;
 import domain.Usluga;
+import domain.Termin;
 import java.util.ArrayList;
 import so.login.SOLogin;
 import so.kategorija_klijenta.SOGetAllKategorijaKlijenta;
@@ -18,6 +19,7 @@ import so.klijent.SOAddKlijent;
 import so.klijent.SODeleteKlijent;
 import so.klijent.SOGetAllKlijent;
 import so.klijent.SOUpdateKlijent;
+import so.termin.SOAddTermin;
 import so.usluga.SOAddUsluga;
 import so.usluga.SODeleteUsluga;
 import so.usluga.SOGetAllUsluga;
@@ -109,6 +111,10 @@ public class ServerController {
         SOGetAllUsluga so = new SOGetAllUsluga();
         so.templateExecute(usluga);
         return so.getLista();
+    }
+
+    public void addTermin(Termin t) throws Exception {
+        (new SOAddTermin()).templateExecute(t);
     }
 
     public ArrayList<Veterinar> getAllVeterinar() throws Exception {

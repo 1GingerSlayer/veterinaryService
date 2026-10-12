@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import session.Session;
 
 /**
  *
@@ -155,6 +156,8 @@ public class FormNovaUsluga extends javax.swing.JDialog {
             Usluga u = new Usluga(-1, naziv, opis, cena, trajanjeMin);
 
             ClientController.getInstance().addUsluga(u);
+
+            Session.getInstance().getMf().popuniUsluge();
 
             JOptionPane.showMessageDialog(this, "Uspesno dodata usluga.");
             this.dispose();

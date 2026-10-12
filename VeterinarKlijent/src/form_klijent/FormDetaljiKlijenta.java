@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import session.Session;
 
 /**
  *
@@ -185,6 +186,9 @@ public class FormDetaljiKlijenta extends javax.swing.JDialog {
                 ClientController.getInstance().deleteKlijent(klijent);
                 FormPretragaKlijenta fp = (FormPretragaKlijenta) getParent();
                 fp.refreshTable();
+
+                Session.getInstance().getMf().popuniKlijente();
+
                 JOptionPane.showMessageDialog(this, "Sistem je obrisao klijenta.");
                 this.dispose();
             } catch (Exception ex) {
@@ -216,6 +220,9 @@ public class FormDetaljiKlijenta extends javax.swing.JDialog {
 
             ClientController.getInstance().updateKlijent(klijent);
             FormPretragaKlijenta fp = (FormPretragaKlijenta) getParent();
+
+            Session.getInstance().getMf().popuniKlijente();
+
             fp.refreshTable();
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio klijenta.");
             this.dispose();
