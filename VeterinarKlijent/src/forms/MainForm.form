@@ -27,6 +27,29 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="mUsluga">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Usluga"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="miNovaUsluga">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nova usluga"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miNovaUslugaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miPretragaUsluge">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pretraga usluge"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miPretragaUslugeActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="mKategorijaKlijenta">
           <Properties>
             <Property name="text" type="java.lang.String" value="Kategorija klijenta"/>
@@ -103,7 +126,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Component id="lblUlogovani" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="245" max="32767" attributes="0"/>
+              <EmptySpace pref="255" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

@@ -8,6 +8,7 @@ import controller.ServerController;
 import domain.Veterinar;
 import domain.KategorijaKlijenta;
 import domain.Klijent;
+import domain.Usluga;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -74,6 +75,18 @@ public class ThreadClient extends Thread {
                     break;
                 case Operation.GET_ALL_KLIJENT:
                     response.setData(ServerController.getInstance().getAllKlijent((Klijent) request.getData())); //za get all tj rezultat select upita moram da setujem odgovor tj data
+                    break;
+                case Operation.ADD_USLUGA:
+                    ServerController.getInstance().addUsluga((Usluga) request.getData());
+                    break;
+                case Operation.DELETE_USLUGA:
+                    ServerController.getInstance().deleteUsluga((Usluga) request.getData());
+                    break;
+                case Operation.UPDATE_USLUGA:
+                    ServerController.getInstance().updateUsluga((Usluga) request.getData());
+                    break;
+                case Operation.GET_ALL_USLUGA:
+                    response.setData(ServerController.getInstance().getAllUsluga((Usluga) request.getData()));
                     break;
                 case Operation.LOGIN:
                     Veterinar veterinar = (Veterinar) request.getData();

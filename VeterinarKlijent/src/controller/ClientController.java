@@ -7,6 +7,7 @@ package controller;
 import domain.Veterinar;
 import domain.KategorijaKlijenta;
 import domain.Klijent;
+import domain.Usluga;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -72,6 +73,22 @@ public class ClientController {
 
     public ArrayList<Klijent> getAllKlijent(Klijent klijent) throws Exception {
         return (ArrayList<Klijent>) sendRequest(Operation.GET_ALL_KLIJENT, klijent);
+    }
+
+    public void addUsluga(Usluga usluga) throws Exception {
+        sendRequest(Operation.ADD_USLUGA, usluga);
+    }
+
+    public void deleteUsluga(Usluga usluga) throws Exception {
+        sendRequest(Operation.DELETE_USLUGA, usluga);
+    }
+
+    public void updateUsluga(Usluga usluga) throws Exception {
+        sendRequest(Operation.UPDATE_USLUGA, usluga);
+    }
+
+    public ArrayList<Usluga> getAllUsluga(Usluga usluga) throws Exception {
+        return (ArrayList<Usluga>) sendRequest(Operation.GET_ALL_USLUGA, usluga);
     }
 
     private synchronized Object sendRequest(int operation, Object data) throws Exception {
