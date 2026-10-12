@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import session.Session;
 
 /**
  *
@@ -164,6 +165,8 @@ public class FormNoviKlijent extends javax.swing.JDialog {
             Klijent k = new Klijent(-1, ime, prezime, email, telefon, kategorijaKlijenta);
 
             ClientController.getInstance().addKlijent(k);
+
+            Session.getInstance().getMf().popuniKlijente();
 
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio klijenta.");
             this.dispose();

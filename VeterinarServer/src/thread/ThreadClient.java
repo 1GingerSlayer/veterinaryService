@@ -9,6 +9,7 @@ import domain.Veterinar;
 import domain.KategorijaKlijenta;
 import domain.Klijent;
 import domain.Usluga;
+import domain.Termin;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -87,6 +88,9 @@ public class ThreadClient extends Thread {
                     break;
                 case Operation.GET_ALL_USLUGA:
                     response.setData(ServerController.getInstance().getAllUsluga((Usluga) request.getData()));
+                    break;
+                case Operation.ADD_TERMIN:
+                    ServerController.getInstance().addTermin((Termin) request.getData());
                     break;
                 case Operation.LOGIN:
                     Veterinar veterinar = (Veterinar) request.getData();

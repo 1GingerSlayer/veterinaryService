@@ -27,4 +27,6 @@ public interface Operation {
     public static final int DELETE_USLUGA = 11;
     public static final int UPDATE_USLUGA = 12;
     public static final int GET_ALL_USLUGA = 13;
+
+    public static final int ADD_TERMIN = 14;
 }

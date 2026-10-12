@@ -5,6 +5,7 @@
 package session;
 
 import domain.Veterinar;
+import forms.MainForm;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -17,6 +18,7 @@ public class Session {
     private static Session instance;
     private Socket socket;
     private Veterinar ulogovani;
+    private MainForm mf;
 
     private Session() {
         try {
@@ -43,6 +45,14 @@ public class Session {
 
     public Veterinar getUlogovani() {
         return ulogovani;
+    }
+
+    public MainForm getMf() {
+        return mf;
+    }
+
+    public void setMf(MainForm mf) {
+        this.mf = mf;
     }
 
 }
