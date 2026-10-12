@@ -6,12 +6,17 @@ package controller;
 
 import domain.Veterinar;
 import domain.KategorijaKlijenta;
+import domain.Klijent;
 import java.util.ArrayList;
 import so.login.SOLogin;
 import so.kategorija_klijenta.SOGetAllKategorijaKlijenta;
 import so.kategorija_klijenta.SOAddKategorijaKlijenta;
 import so.kategorija_klijenta.SODeleteKategorijaKlijenta;
 import so.kategorija_klijenta.SOUpdateKategorijaKlijenta;
+import so.klijent.SOAddKlijent;
+import so.klijent.SODeleteKlijent;
+import so.klijent.SOGetAllKlijent;
+import so.klijent.SOUpdateKlijent;
 import so.veterinar.SOGetAllVeterinar;
 
 /**
@@ -62,6 +67,24 @@ public class ServerController {
     public ArrayList<KategorijaKlijenta> getAllKategorijaKlijenta(KategorijaKlijenta kategorijaKlijenta) throws Exception {
         SOGetAllKategorijaKlijenta so = new SOGetAllKategorijaKlijenta();
         so.templateExecute(kategorijaKlijenta);
+        return so.getLista();
+    }
+
+    public void addKlijent(Klijent klijent) throws Exception {
+        (new SOAddKlijent()).templateExecute(klijent);
+    }
+
+    public void deleteKlijent(Klijent klijent) throws Exception {
+        (new SODeleteKlijent()).templateExecute(klijent);
+    }
+
+    public void updateKlijent(Klijent klijent) throws Exception {
+        (new SOUpdateKlijent()).templateExecute(klijent);
+    }
+
+    public ArrayList<Klijent> getAllKlijent(Klijent klijent) throws Exception {
+        SOGetAllKlijent so = new SOGetAllKlijent();
+        so.templateExecute(klijent);
         return so.getLista();
     }
 

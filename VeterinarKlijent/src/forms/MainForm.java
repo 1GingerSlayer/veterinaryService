@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 import session.Session;
 import form_kategorija_klijenta.FormNovaKategorijaKlijenta;
 import form_kategorija_klijenta.FormPretragaKategorijeKlijenta;
+import form_klijent.FormNoviKlijent;
+import form_klijent.FormPretragaKlijenta;
 
 /**
  *
@@ -65,6 +67,9 @@ public class MainForm extends javax.swing.JFrame {
 
         lblUlogovani = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        mKlijent = new javax.swing.JMenu();
+        miNoviKlijent = new javax.swing.JMenuItem();
+        miPretragaKlijenta = new javax.swing.JMenuItem();
         mKategorijaKlijenta = new javax.swing.JMenu();
         miNovaKategorija = new javax.swing.JMenuItem();
         miPretragaKategorije = new javax.swing.JMenuItem();
@@ -74,6 +79,26 @@ public class MainForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblUlogovani.setText("Ulogovani");
+
+        mKlijent.setText("Klijent");
+
+        miNoviKlijent.setText("Novi klijent");
+        miNoviKlijent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miNoviKlijentActionPerformed(evt);
+            }
+        });
+        mKlijent.add(miNoviKlijent);
+
+        miPretragaKlijenta.setText("Pretraga klijenta");
+        miPretragaKlijenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miPretragaKlijentaActionPerformed(evt);
+            }
+        });
+        mKlijent.add(miPretragaKlijenta);
+
+        jMenuBar1.add(mKlijent);
 
         mKategorijaKlijenta.setText("Kategorija klijenta");
 
@@ -116,14 +141,14 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblUlogovani)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addContainerGap(530, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(lblUlogovani)
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
 
         pack();
@@ -157,6 +182,14 @@ public class MainForm extends javax.swing.JFrame {
         new FormPretragaKategorijeKlijenta(this, true).setVisible(true);
     }//GEN-LAST:event_miPretragaKategorijeActionPerformed
 
+    private void miNoviKlijentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miNoviKlijentActionPerformed
+        new FormNoviKlijent(this, true).setVisible(true);
+    }//GEN-LAST:event_miNoviKlijentActionPerformed
+
+    private void miPretragaKlijentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPretragaKlijentaActionPerformed
+        new FormPretragaKlijenta(this, true).setVisible(true);
+    }//GEN-LAST:event_miPretragaKlijentaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -165,9 +198,12 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblUlogovani;
     private javax.swing.JMenu mKategorijaKlijenta;
+    private javax.swing.JMenu mKlijent;
     private javax.swing.JMenu mOdjava;
     private javax.swing.JMenuItem miNovaKategorija;
+    private javax.swing.JMenuItem miNoviKlijent;
     private javax.swing.JMenuItem miOdjava;
     private javax.swing.JMenuItem miPretragaKategorije;
+    private javax.swing.JMenuItem miPretragaKlijenta;
     // End of variables declaration//GEN-END:variables
 }

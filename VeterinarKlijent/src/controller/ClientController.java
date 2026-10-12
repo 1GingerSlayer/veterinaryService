@@ -6,6 +6,7 @@ package controller;
 
 import domain.Veterinar;
 import domain.KategorijaKlijenta;
+import domain.Klijent;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -55,6 +56,22 @@ public class ClientController {
 
     public ArrayList<KategorijaKlijenta> getAllKategorijaKlijenta(KategorijaKlijenta kategorijaKlijenta) throws Exception {
         return (ArrayList<KategorijaKlijenta>) sendRequest(Operation.GET_ALL_KATEGORIJA_KLIJENTA, kategorijaKlijenta);
+    }
+
+    public void addKlijent(Klijent klijent) throws Exception {
+        sendRequest(Operation.ADD_KLIJENT, klijent);
+    }
+
+    public void deleteKlijent(Klijent klijent) throws Exception {
+        sendRequest(Operation.DELETE_KLIJENT, klijent);
+    }
+
+    public void updateKlijent(Klijent klijent) throws Exception {
+        sendRequest(Operation.UPDATE_KLIJENT, klijent);
+    }
+
+    public ArrayList<Klijent> getAllKlijent(Klijent klijent) throws Exception {
+        return (ArrayList<Klijent>) sendRequest(Operation.GET_ALL_KLIJENT, klijent);
     }
 
     private synchronized Object sendRequest(int operation, Object data) throws Exception {
