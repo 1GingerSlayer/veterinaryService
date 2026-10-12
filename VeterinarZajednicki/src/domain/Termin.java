@@ -24,6 +24,11 @@ public class Termin extends AbstractDomainObject {
     private Veterinar veterinar;
     private Klijent klijent;
     private ArrayList<StavkaTermina> stavkeTermina;
+    //napravila sam nova polja zbog serverske forme i modela tabele, ona ne idu u konstruktore
+    private int filterVeterinarID = -1;
+    private String tipBrojanja = null; // "UKUPNO", "BUDUCI", "DANAS"
+    private String filterUslugaNaziv = "";
+    private String filterDatum = ""; // ako korisnik krene da pretrazuje datum sa "6.10" sto je nekompletan datum, Date ga nece naci, zato stavljam da je inicijalno prazan string
 
     public Termin() {
     }
@@ -176,6 +181,20 @@ public class Termin extends AbstractDomainObject {
 
     @Override
     public String dodatniUslov() {
+        //dodala sam ovu proveru zbog serverske forme i modela tabele
+        if (tipBrojanja != null) {                       //klijent ovo ne moze da postavi jer sam stavila gore da je tipBrojanja null, klijent na pretrazi preskace ovaj if
+            // samo server ovo moze da promeni u ukupno buduci danas u serverController u getBrojTermina (t.setTipBrojanja)               
+            String uslov = " WHERE t.VeterinarID = " + filterVeterinarID; //filtriraj po veterinar id
+
+            if (tipBrojanja.equals("BUDUCI")) {
+                uslov += " AND t.DatumVremePocetka >= NOW() ";      //vrati mi sve termine za veterinarID koji su nakon ovog trenutka
+            } else if (tipBrojanja.equals("DANAS")) {
+                uslov += " AND DATE(t.DatumVremePocetka) = CURDATE() "; //vrati mi sve termine za veterinaraID koji se padaju na danasnji dan
+            }
+
+            return uslov;   //ako ne prodje buduci i danas, znaci da ce da mi vrati sve termine za veterinaraID
+        }
+
         if (terminID != -1) {
             return " WHERE terminID = " + terminID;
         }
@@ -183,7 +202,16 @@ public class Termin extends AbstractDomainObject {
         String uslovPretrage = " WHERE LOWER(KL.IME) LIKE '%" + klijent.getIme() + "%' "
                 + "AND LOWER(KL.PREZIME) LIKE '%" + klijent.getPrezime() + "%' "
                 + "AND LOWER(V.IME) LIKE '%" + veterinar.getIme() + "%' "
-                + "AND LOWER(V.PREZIME) LIKE '%" + veterinar.getPrezime() + "%' ";
+                + "AND LOWER(V.PREZIME) LIKE '%" + veterinar.getPrezime() + "%' "
+                + "AND DATE_FORMAT(T.DATUMVREMEPOCETKA, '%d.%m.%Y %H:%i') LIKE '%" + filterDatum + "%' ";
+
+        // dodatan if je jer se usluga cita iz stavke termina, a termin moze i ne mora imati stavke termina
+        if (!filterUslugaNaziv.isEmpty()) {
+            uslovPretrage += "AND EXISTS (SELECT 1 FROM STAVKATERMINA ST " // exist - ako je ispunjen uslov u zagradi, vrati bar jedan red
+                    + "JOIN USLUGA U ON (U.USLUGAID = ST.USLUGAID) "
+                    + "WHERE ST.TERMINID = T.TERMINID "
+                    + "AND LOWER(U.NAZIV) LIKE '%" + filterUslugaNaziv + "%') ";
+        }
 
         return uslovPretrage;
     }
@@ -199,5 +227,37 @@ public class Termin extends AbstractDomainObject {
 
     public void setStavkeTermina(ArrayList<StavkaTermina> stavkeTermina) {
         this.stavkeTermina = stavkeTermina;
+    }
+
+    public int getFilterVeterinarID() {
+        return filterVeterinarID;
+    }
+
+    public void setFilterVeterinarID(int filterVeterinarID) {
+        this.filterVeterinarID = filterVeterinarID;
+    }
+
+    public String getTipBrojanja() {
+        return tipBrojanja;
+    }
+
+    public void setTipBrojanja(String tipBrojanja) {
+        this.tipBrojanja = tipBrojanja;
+    }
+
+    public String getFilterUslugaNaziv() {
+        return filterUslugaNaziv;
+    }
+
+    public void setFilterUslugaNaziv(String filterUslugaNaziv) {
+        this.filterUslugaNaziv = filterUslugaNaziv;
+    }
+
+    public String getFilterDatum() {
+        return filterDatum;
+    }
+
+    public void setFilterDatum(String filterDatum) {
+        this.filterDatum = filterDatum;
     }
 }

@@ -25,6 +25,7 @@ import form_kategorija_klijenta.FormNovaKategorijaKlijenta;
 import form_kategorija_klijenta.FormPretragaKategorijeKlijenta;
 import form_klijent.FormNoviKlijent;
 import form_klijent.FormPretragaKlijenta;
+import form_termin.FormPretragaTermina;
 import form_usluga.FormNovaUsluga;
 import form_usluga.FormPretragaUsluge;
 import models.TableModelStavkeTermina;
@@ -119,6 +120,8 @@ public class MainForm extends javax.swing.JFrame {
         mUsluga = new javax.swing.JMenu();
         miNovaUsluga = new javax.swing.JMenuItem();
         miPretragaUsluge = new javax.swing.JMenuItem();
+        mTermin = new javax.swing.JMenu();
+        miPretragaTermina = new javax.swing.JMenuItem();
         mKategorijaKlijenta = new javax.swing.JMenu();
         miNovaKategorija = new javax.swing.JMenuItem();
         miPretragaKategorije = new javax.swing.JMenuItem();
@@ -341,6 +344,18 @@ public class MainForm extends javax.swing.JFrame {
         mUsluga.add(miPretragaUsluge);
 
         jMenuBar1.add(mUsluga);
+
+        mTermin.setText("Termin");
+
+        miPretragaTermina.setText("Pretraga termina");
+        miPretragaTermina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miPretragaTerminaActionPerformed(evt);
+            }
+        });
+        mTermin.add(miPretragaTermina);
+
+        jMenuBar1.add(mTermin);
 
         mKategorijaKlijenta.setText("Kategorija klijenta");
 
@@ -587,6 +602,10 @@ public class MainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSacuvajActionPerformed
 
+    private void miPretragaTerminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPretragaTerminaActionPerformed
+        new FormPretragaTermina(this, true).setVisible(true);
+    }//GEN-LAST:event_miPretragaTerminaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -613,6 +632,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu mKategorijaKlijenta;
     private javax.swing.JMenu mKlijent;
     private javax.swing.JMenu mOdjava;
+    private javax.swing.JMenu mTermin;
     private javax.swing.JMenu mUsluga;
     private javax.swing.JMenuItem miNovaKategorija;
     private javax.swing.JMenuItem miNovaUsluga;
@@ -620,6 +640,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem miOdjava;
     private javax.swing.JMenuItem miPretragaKategorije;
     private javax.swing.JMenuItem miPretragaKlijenta;
+    private javax.swing.JMenuItem miPretragaTermina;
     private javax.swing.JMenuItem miPretragaUsluge;
     private javax.swing.JTable tblStavke;
     private javax.swing.JFormattedTextField txtDatumVremePocetka;
