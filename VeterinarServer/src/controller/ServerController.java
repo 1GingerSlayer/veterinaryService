@@ -20,10 +20,14 @@ import so.klijent.SODeleteKlijent;
 import so.klijent.SOGetAllKlijent;
 import so.klijent.SOUpdateKlijent;
 import so.termin.SOAddTermin;
+import so.termin.SODeleteTermin;
+import so.termin.SOGetAllTermin;
+import so.termin.SOUpdateTermin;
 import so.usluga.SOAddUsluga;
 import so.usluga.SODeleteUsluga;
 import so.usluga.SOGetAllUsluga;
 import so.usluga.SOUpdateUsluga;
+
 import so.veterinar.SOGetAllVeterinar;
 
 /**
@@ -117,10 +121,31 @@ public class ServerController {
         (new SOAddTermin()).templateExecute(t);
     }
 
+    public void deleteTermin(Termin t) throws Exception {
+        (new SODeleteTermin()).templateExecute(t);
+    }
+
+    public void updateTermin(Termin t) throws Exception {
+        (new SOUpdateTermin()).templateExecute(t);
+    }
+
+    public ArrayList<Termin> getAllTermin(Termin termin) throws Exception {
+        SOGetAllTermin so = new SOGetAllTermin();
+        so.templateExecute(termin);
+        return so.getLista();
+    }
+
     public ArrayList<Veterinar> getAllVeterinar() throws Exception {
         SOGetAllVeterinar so = new SOGetAllVeterinar();
         so.templateExecute(new Veterinar(-1, "", "", "", "")); //forica, namerno posledjujem -1 jer onda nece da filtrira veterinara po id nego ce uci u else kada radi filter sa like
         return so.getLista();                                   //namerno prosledjujem prazan string jer like '%%' sa praznim stringom vraca sve veterinare (bigbrain)
+    }
+
+    public int getBrojTermina(int veterinarID, String tip) throws Exception {
+        Termin t = new Termin();                //prazan objekat termin
+        t.setFilterVeterinarID(veterinarID);    //u taj termin postavljam id veterinara tj vezem ga za veterinara
+        t.setTipBrojanja(tip);                  //ukupno, buduci, danas, ovde ce da mi okine dodatniUslov u terminu (morala sam da dodam dodatan if)
+        return getAllTermin(t).size();          //vracam velicinu liste termina za vezanog veterinara (broj termina u toj listi)
     }
 
     public void logout(Veterinar ulogovani) {

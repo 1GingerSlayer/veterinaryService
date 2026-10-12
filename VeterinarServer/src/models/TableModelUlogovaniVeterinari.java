@@ -17,9 +17,13 @@ public class TableModelUlogovaniVeterinari extends AbstractTableModel implements
 //stavila sam da implementira runnable jer hocu real time da prikaze kad se veterinar uloguje/izloguje sa klijenta u tabeli na serveru
 
     private ArrayList<Veterinar> lista = new ArrayList<>();
+    private int[] ukupno = new int[0];
+    private int[] buduci = new int[0];
+    private int[] danas = new int[0];
     private boolean[] online = new boolean[0];
 
-    private String[] kolone = {"Ime", "Prezime", "Username", "Status"};
+    private String[] kolone = {"Ime", "Prezime", "Username", "Status",
+        "Ukupno termina", "Buduci termini", "Termini danas"};
 
     public TableModelUlogovaniVeterinari() {
         refreshTable();
@@ -52,6 +56,12 @@ public class TableModelUlogovaniVeterinari extends AbstractTableModel implements
                 return v.getUsername();
             case 3:
                 return online[row] ? "Online" : "Offline";
+            case 4:
+                return ukupno[row];
+            case 5:
+                return buduci[row];
+            case 6:
+                return danas[row];
             default:
                 return null;
         }
@@ -85,14 +95,23 @@ public class TableModelUlogovaniVeterinari extends AbstractTableModel implements
             }
 
             int n = poredjani.size();
+            int[] u = new int[n];
+            int[] b = new int[n];
+            int[] d = new int[n];
             boolean[] on = new boolean[n];
 
             for (int i = 0; i < n; i++) {
                 Veterinar v = poredjani.get(i);
                 on[i] = ulogovani.contains(v);
+                u[i] = ServerController.getInstance().getBrojTermina(v.getVeterinarID(), "UKUPNO");
+                b[i] = ServerController.getInstance().getBrojTermina(v.getVeterinarID(), "BUDUCI");
+                d[i] = ServerController.getInstance().getBrojTermina(v.getVeterinarID(), "DANAS");
             }
 
             this.lista = poredjani;
+            this.ukupno = u;
+            this.buduci = b;
+            this.danas = d;
             this.online = on;
 
             fireTableDataChanged();

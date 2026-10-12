@@ -96,6 +96,18 @@ public class ClientController {
         sendRequest(Operation.ADD_TERMIN, t);
     }
 
+    public void deleteTermin(Termin t) throws Exception {
+        sendRequest(Operation.DELETE_TERMIN, t);
+    }
+
+    public void updateTermin(Termin t) throws Exception {
+        sendRequest(Operation.UPDATE_TERMIN, t);
+    }
+
+    public ArrayList<Termin> getAllTermin(Termin termin) throws Exception {
+        return (ArrayList<Termin>) sendRequest(Operation.GET_ALL_TERMIN, termin);
+    }
+
     private synchronized Object sendRequest(int operation, Object data) throws Exception {
         Request request = new Request(operation, data);
 
