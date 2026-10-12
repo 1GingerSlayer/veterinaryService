@@ -13,6 +13,8 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import session.Session;
+import form_kategorija_klijenta.FormNovaKategorijaKlijenta;
+import form_kategorija_klijenta.FormPretragaKategorijeKlijenta;
 
 /**
  *
@@ -63,12 +65,35 @@ public class MainForm extends javax.swing.JFrame {
 
         lblUlogovani = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        mKategorijaKlijenta = new javax.swing.JMenu();
+        miNovaKategorija = new javax.swing.JMenuItem();
+        miPretragaKategorije = new javax.swing.JMenuItem();
         mOdjava = new javax.swing.JMenu();
         miOdjava = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblUlogovani.setText("Ulogovani");
+
+        mKategorijaKlijenta.setText("Kategorija klijenta");
+
+        miNovaKategorija.setText(" Nova kategorija");
+        miNovaKategorija.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miNovaKategorijaActionPerformed(evt);
+            }
+        });
+        mKategorijaKlijenta.add(miNovaKategorija);
+
+        miPretragaKategorije.setText("Pretraga kategorije");
+        miPretragaKategorije.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miPretragaKategorijeActionPerformed(evt);
+            }
+        });
+        mKategorijaKlijenta.add(miPretragaKategorije);
+
+        jMenuBar1.add(mKategorijaKlijenta);
 
         mOdjava.setText("Odjava");
 
@@ -124,6 +149,14 @@ public class MainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_miOdjavaActionPerformed
 
+    private void miNovaKategorijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miNovaKategorijaActionPerformed
+        new FormNovaKategorijaKlijenta(this, true).setVisible(true);
+    }//GEN-LAST:event_miNovaKategorijaActionPerformed
+
+    private void miPretragaKategorijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPretragaKategorijeActionPerformed
+        new FormPretragaKategorijeKlijenta(this, true).setVisible(true);
+    }//GEN-LAST:event_miPretragaKategorijeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -131,7 +164,10 @@ public class MainForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblUlogovani;
+    private javax.swing.JMenu mKategorijaKlijenta;
     private javax.swing.JMenu mOdjava;
+    private javax.swing.JMenuItem miNovaKategorija;
     private javax.swing.JMenuItem miOdjava;
+    private javax.swing.JMenuItem miPretragaKategorije;
     // End of variables declaration//GEN-END:variables
 }

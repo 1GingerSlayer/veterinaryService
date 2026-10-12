@@ -4,6 +4,29 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
+        <Menu class="javax.swing.JMenu" name="mKategorijaKlijenta">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Kategorija klijenta"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="miNovaKategorija">
+              <Properties>
+                <Property name="text" type="java.lang.String" value=" Nova kategorija"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miNovaKategorijaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miPretragaKategorije">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pretraga kategorije"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miPretragaKategorijeActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="mOdjava">
           <Properties>
             <Property name="text" type="java.lang.String" value="Odjava"/>

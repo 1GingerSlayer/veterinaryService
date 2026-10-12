@@ -5,8 +5,10 @@
 package controller;
 
 import domain.Veterinar;
+import domain.KategorijaKlijenta;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import session.Session;
 import transfer.Request;
 import transfer.Response;
@@ -37,6 +39,22 @@ public class ClientController {
 
     public void logout(Veterinar ulogovani) throws Exception {
         sendRequest(Operation.LOGOUT, ulogovani);
+    }
+
+    public void addKategorijaKlijenta(KategorijaKlijenta kategorijaKlijenta) throws Exception {
+        sendRequest(Operation.ADD_KATEGORIJA_KLIJENTA, kategorijaKlijenta);
+    }
+
+    public void deleteKategorijaKlijenta(KategorijaKlijenta kategorijaKlijenta) throws Exception {
+        sendRequest(Operation.DELETE_KATEGORIJA_KLIJENTA, kategorijaKlijenta);
+    }
+
+    public void updateKategorijaKlijenta(KategorijaKlijenta kategorijaKlijenta) throws Exception {
+        sendRequest(Operation.UPDATE_KATEGORIJA_KLIJENTA, kategorijaKlijenta);
+    }
+
+    public ArrayList<KategorijaKlijenta> getAllKategorijaKlijenta(KategorijaKlijenta kategorijaKlijenta) throws Exception {
+        return (ArrayList<KategorijaKlijenta>) sendRequest(Operation.GET_ALL_KATEGORIJA_KLIJENTA, kategorijaKlijenta);
     }
 
     private synchronized Object sendRequest(int operation, Object data) throws Exception {
