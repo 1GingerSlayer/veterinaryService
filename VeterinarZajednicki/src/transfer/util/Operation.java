@@ -22,4 +22,9 @@ public interface Operation {
     public static final int DELETE_KLIJENT = 7;
     public static final int UPDATE_KLIJENT = 8;
     public static final int GET_ALL_KLIJENT = 9;
+
+    public static final int ADD_USLUGA = 10;
+    public static final int DELETE_USLUGA = 11;
+    public static final int UPDATE_USLUGA = 12;
+    public static final int GET_ALL_USLUGA = 13;
 }
